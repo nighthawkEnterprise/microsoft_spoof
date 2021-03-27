@@ -100,10 +100,10 @@ function App() {
     );
   }
 
-  async function RegisterForm(props) {
+   function RegisterForm(props) {
     const [password, setPassword] = useState('');
     // console.log(props);
-    function submit(e,username,password, lat, long, date, time) {
+    async function submit(e,username,password, lat, long, date, time) {
       e.preventDefault();
       // console.log('submit', username);
       // console.log('submit', password);
