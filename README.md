@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# Security Awareness Simulation Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repo is a React frontend prototype for a security-awareness simulation. The original project name references a Microsoft-style spoofing scenario, but the professional framing for this work is phishing-awareness, identity-security education, and controlled demo simulation.
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+Security teams often need safe ways to explain how phishing, spoofed login experiences, and credential-harvesting patterns work without exposing users to real attacks. This frontend prototype explores how a realistic-looking experience can be used in a controlled setting to educate users and demonstrate risk.
 
-### `npm start`
+## Product problem
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Phishing and brand impersonation are easier to understand when people can see how convincing a malicious flow might look. Static training material often fails because it does not feel real.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This project explores a simulated frontend experience that could be used to support security education, awareness training, or identity-risk demos.
 
-### `npm test`
+## Key features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React frontend
+- Create React App structure
+- Axios support for backend communication
+- UI patterns for a simulated login/security-awareness flow
+- Separation from the backend service in a companion repo
 
-### `npm run build`
+## Tech stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React 17
+- Create React App
+- Axios
+- React Spring
+- CSS
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Related repo
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `microsoft-spoof-server` — backend companion service for the simulation
 
-### `npm run eject`
+## Portfolio positioning
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Use this project carefully. It should not be presented as a phishing tool. It should be framed as a controlled security-awareness simulation that demonstrates how identity attacks can be recognized and mitigated.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This can support a broader identity/security portfolio story, but it should not be a flagship project unless renamed and sanitized.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Running locally
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+npm install
+npm start
+```
 
-## Learn More
+Build for production:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm run build
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Safety and ethics note
 
-### Code Splitting
+This project should only be used in controlled, authorized, educational environments. Do not deploy or use it to collect real credentials or impersonate services. Before making the repo public, rename it, remove any brand assets that could imply impersonation, and clearly label the project as a simulation.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Future improvements
 
-### Analyzing the Bundle Size
+- Rename the repo to a neutral security-awareness name
+- Add explicit simulation banners
+- Remove or replace any third-party brand assets
+- Add training/education copy
+- Add safe mock-only backend behavior
+- Add documentation about authorized use only
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Status
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Security-awareness frontend prototype. Needs renaming and sanitization before portfolio use.
